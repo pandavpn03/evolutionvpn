@@ -14,5 +14,3 @@ Query="SELECT user_name FROM users WHERE  $PRIV "
 user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "$Query"`
 [ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
 fi
-720935c35e7fe29ef9b629d8e31c88c8
-a5b4514c25c664646a002096965dbed5
