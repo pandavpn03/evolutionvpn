@@ -1,0 +1,18 @@
+#!/bin/bash
+username=`head -n1 $1 | tail -1`   
+password=`head -n2 $1 | tail -1`
+#Database Credentials#
+HOST='evosql.superthunder.com.ph'
+USER='alliance2_evolutionvpn01'
+PASS='541983-KICKS'
+DB='alliance2_evolutionvpn01'
+##Authentication
+PRE="user_name='$username' AND auth_vpn=md5('$password') AND is_validated=1 AND status='live' AND is_freeze=0 AND is_active=1 AND is_ban=0 AND duration > 0"
+VIP="user_name='$username' AND auth_vpn=md5('$password') AND is_validated=1 AND status='live' AND is_freeze=0 AND is_active=1 AND is_ban=0 AND is_vip=1 AND vip_duration > 0"
+PRIV="user_name='$username' AND auth_vpn=md5('$password') AND is_validated=1 AND status='live' AND is_freeze=0 AND is_active=1 AND is_ban=0 AND is_private=1 AND private_duration > 0"
+Query="SELECT user_name FROM users WHERE  $PRIV "
+user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "$Query"`
+[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
+fi
+720935c35e7fe29ef9b629d8e31c88c8
+a5b4514c25c664646a002096965dbed5
